@@ -74,7 +74,7 @@ class RivescriptSkill(FallbackSkill):
 		self.rs.set_variable("master", self.settings["master"])
 		self.rs.set_variable("interests", self.settings["interests"])
 		# set personal bot info
-		self.rs.set_variable("name", "S.A.M. (Smart Artificial Mind)")
+		self.rs.set_variable("name", "Computer, but my technical name is S.A.M. (Smart Artificial Mind)")
 		self.rs.set_variable("fullname", "S.A.M. (Smart Artificial Mind), but you can call me computer.")
 		self.rs.set_variable("age", str(date.today().year - 2020))
 		self.rs.set_variable("location",self.location["city"]["state"]["country"]["name"])
