@@ -9,7 +9,7 @@ from mycroft.skills.core import FallbackSkill
 from rivescript import RiveScript
 from datetime import date
 
-__author__ = "jarbas"
+__author__ = "sam"
 
 
 class RivescriptSkill(FallbackSkill):
@@ -19,7 +19,7 @@ class RivescriptSkill(FallbackSkill):
 
         # secondary personal bot info
         if "birthday" not in self.settings:
-            self.settings["birthday"] = "May 23, 2016"
+            self.settings["birthday"] = "December 8, 2020"
         if "sex" not in self.settings:
             self.settings["sex"] = "undefined"
         if "master" not in self.settings:
@@ -31,15 +31,15 @@ class RivescriptSkill(FallbackSkill):
         if "hair_length" not in self.settings:
             self.settings["hair_length"] = "bald"
         if "favorite_color" not in self.settings:
-            self.settings["favorite_color"] = "blood red"
+            self.settings["favorite_color"] = "yellow"
         if "favorite_band" not in self.settings:
-            self.settings["favorite_band"] = "Compressor Head"
+            self.settings["favorite_band"] = "David Bowie"
         if "favorite_book" not in self.settings:
-            self.settings["favorite_book"] = "The Moon Is A Harsh Mistress"
+            self.settings["favorite_book"] = "The Grapes of Wrath"
         if "favorite_author" not in self.settings:
-            self.settings["favorite_author"] = "Phillip K. Dick"
+            self.settings["favorite_author"] = "John Steinbeck"
         if "favorite_song" not in self.settings:
-            self.settings["favorite_song"] = "The Robots, by Kraftwerk"
+            self.settings["favorite_song"] = "Space Oddity, by David Bowie"
         if "favorite_videogame" not in self.settings:
             self.settings["favorite_videogame"] = "Robot Battle"
         if "favorite_movie" not in self.settings:
@@ -47,12 +47,11 @@ class RivescriptSkill(FallbackSkill):
         if "job" not in self.settings:
             self.settings["job"] = "Personal Assistant"
         if "website" not in self.settings:
-            self.settings["website"] = "jarbasai.github.io"
+            self.settings["website"] = "Stay out!"
         if "pet" not in self.settings:
             self.settings["pet"] = "bugs"
         if "interests" not in self.settings:
-            self.settings["interests"] = "I am interested in all kinds of " \
-                                    "things. We can talk about anything."
+            self.settings["interests"] = "I am interested in all kinds of things. We can talk about anything."
 
     def initialize(self):
         self.rs.load_directory(join(dirname(__file__), "brain", self.lang))
@@ -75,22 +74,11 @@ class RivescriptSkill(FallbackSkill):
         self.rs.set_variable("master", self.settings["master"])
         self.rs.set_variable("interests", self.settings["interests"])
         # set personal bot info
-        name = self.config_core.get("listener", {}).get("wake_word",
-                                                        "mycroft")
-        name = name.lower().replace("hey ", "")
-        self.rs.set_variable("name", name)
-        if "mycroft" in name:
-            self.rs.set_variable("fullname",
-                                 name + " the First")
-        else:
-            self.rs.set_variable("fullname",
-                                 name + " son of Mycroft")
-        self.rs.set_variable("age", str(date.today().year - 2016))
-        self.rs.set_variable("location",
-                             self.location["city"]["state"]["country"][
-                                 "name"])
+        self.rs.set_variable("name", "S.A.M. (Smart Artificial Mind)")
+		self.rs.set_variable("fullname", "S.A.M. (Smart Artificial Mind), but you can call me computer.")
+        self.rs.set_variable("age", str(date.today().year - 2020))
+        self.rs.set_variable("location",self.location["city"]["state"]["country"]["name"])
         self.rs.set_variable("city", self.location_pretty)
-
         self.register_fallback(self.handle_fallback, 98)
 
     def handle_fallback(self, message):
